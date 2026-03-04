@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yt-dlp Command Dashboard Pro</title>
+
+<style>
+
+/* ===============================
+   GLOBAL BACKGROUND + LIGHT FX
+================================= */
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: radial-gradient(circle at 20% 30%, #1f3b73, transparent 40%),
+                radial-gradient(circle at 80% 70%, #0f9b8e, transparent 40%),
+                linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background-attachment: fixed;
+    color: #ffffff;
+    padding: 50px 20px;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+}
+
+/* ===============================
+   TITLE WITH GLOW EFFECT
+================================= */
+
+h1 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 60px;
+    background: linear-gradient(90deg, #00f5ff, #00ffcc, #00f5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0,255,255,0.6),
+                 0 0 40px rgba(0,255,255,0.4);
+}
+
+/* ===============================
+   CARD DESIGN WITH DEPTH
+================================= */
+
+.card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 50px;
+    box-shadow: 
+        0 10px 40px rgba(0,0,0,0.6),
+        inset 0 0 20px rgba(255,255,255,0.05);
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(45deg, #00f5ff, #00ffcc, #0072ff);
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0.4;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.8),
+        0 0 25px rgba(0,255,255,0.4);
+}
+
+/* ===============================
+   SECTION TITLES
+================================= */
+
+.card h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #00eaff;
+    text-shadow: 0 0 10px rgba(0,255,255,0.6);
+}
+
+/* ===============================
+   FEATURE LIST
+================================= */
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+/* ===============================
+   CODE BOX
+================================= */
+
+.code-box {
+    background: #0d1117;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    color: #00ffcc;
+    box-shadow: 
+        inset 0 0 15px rgba(0,255,204,0.2),
+        0 0 20px rgba(0,0,0,0.6);
+    overflow-x: auto;
+    position: relative;
+}
+
+.code-box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #00f5ff, #00ffcc);
+}
+
+/* ===============================
+   FOOTER
+================================= */
+
+footer {
+    text-align: center;
+    margin-top: 80px;
+    font-size: 14px;
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(0,255,255,0.5);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    .card {
+        padding: 25px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>yt-dlp Advanced Download Interface</h1>
+
+<div class="card">
+<h2>Full Quality Video + Metadata + Subtitles</h2>
+
+<ul>
+<li>Best video and audio streams</li>
+<li>Embeds thumbnail, chapters, metadata</li>
+<li>English and Hindi subtitles supported</li>
+<li>Automatic retry and resume</li>
+</ul>
+
+<div class="code-box">
+yt-dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-thumbnail --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" --ignore-errors --retries infinite --fragment-retries infinite --continue
+</div>
+
+</div>
+
+<div class="card">
+<h2>Extract Highest Quality MP3 + Thumbnail + Metadata</h2>
+
+<ul>
+<li>Audio-only extraction</li>
+<li>MP3 conversion</li>
+<li>Maximum VBR quality</li>
+<li>Embeds thumbnail as album art</li>
+<li>Adds metadata automatically</li>
+</ul>
+
+<div class="code-box">
+py -m yt_dlp -x --audio-format mp3 --audio-quality 0 --embed-thumbnail --add-metadata -o "%(title)s.%(ext)s" "https://youtu.be/RHcnVLbl2Z4?si=efzRL2tv8TSbhCma"
+</div>
+
+</div>
+
+<div class="card">
+<h2>Download and Merge to MKV</h2>
+
+<ul>
+<li>Best video + audio streams</li>
+<li>Merged into MKV container</li>
+<li>Thumbnail converted and embedded</li>
+</ul>
+
+<div class="code-box">
+python -m yt_dlp -f "bv*+ba/b" --merge-output-format mkv --embed-thumbnail --convert-thumbnails jpg "https://youtu.be/KGEtIjERRq0?si=7O6iyW5HnrWXJsr9"
+</div>
+
+</div>
+
+<footer>
+Enhanced Visual Layout with Glow, Depth, and Light Effects
+</footer>
+
+</div>
+
+</body>
+</html>
