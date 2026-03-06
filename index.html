@@ -3,157 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>yt-dlp Command Dashboard Pro</title>
+<title>yt-dlp Advanced Download Interface</title>
 
 <style>
 
-/* ===============================
-   GLOBAL BACKGROUND + LIGHT FX
-================================= */
-
-body {
-    margin: 0;
-    font-family: "Segoe UI", sans-serif;
-    background: radial-gradient(circle at 20% 30%, #1f3b73, transparent 40%),
-                radial-gradient(circle at 80% 70%, #0f9b8e, transparent 40%),
-                linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    background-attachment: fixed;
-    color: #ffffff;
-    padding: 50px 20px;
+body{
+margin:0;
+font-family:Segoe UI,system-ui;
+background:radial-gradient(circle at 20% 30%,#1f3b73,transparent 40%),radial-gradient(circle at 80% 70%,#0f9b8e,transparent 40%),linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+background-attachment:fixed;
+color:#fff;
+padding:40px;
 }
 
-.container {
-    max-width: 1150px;
-    margin: auto;
+.container{
+max-width:1200px;
+margin:auto;
 }
 
-/* ===============================
-   TITLE WITH GLOW EFFECT
-================================= */
-
-h1 {
-    text-align: center;
-    font-size: 42px;
-    margin-bottom: 60px;
-    background: linear-gradient(90deg, #00f5ff, #00ffcc, #00f5ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(0,255,255,0.6),
-                 0 0 40px rgba(0,255,255,0.4);
+h1{
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+background:linear-gradient(90deg,#00f5ff,#00ffcc);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-/* ===============================
-   CARD DESIGN WITH DEPTH
-================================= */
-
-.card {
-    position: relative;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(14px);
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 50px;
-    box-shadow: 
-        0 10px 40px rgba(0,0,0,0.6),
-        inset 0 0 20px rgba(255,255,255,0.05);
-    transition: all 0.4s ease;
-    overflow: hidden;
+.section{
+margin-bottom:60px;
 }
 
-.card::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: 22px;
-    background: linear-gradient(45deg, #00f5ff, #00ffcc, #0072ff);
-    z-index: -1;
-    filter: blur(20px);
-    opacity: 0.4;
+.setup-box{
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:16px;
+margin-bottom:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
-.card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.8),
-        0 0 25px rgba(0,255,255,0.4);
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
 }
 
-/* ===============================
-   SECTION TITLES
-================================= */
-
-.card h2 {
-    margin-top: 0;
-    font-size: 24px;
-    color: #00eaff;
-    text-shadow: 0 0 10px rgba(0,255,255,0.6);
+.card{
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:18px;
+box-shadow:0 10px 40px rgba(0,0,0,0.7);
 }
 
-/* ===============================
-   FEATURE LIST
-================================= */
-
-ul {
-    padding-left: 20px;
+.code{
+background:#0d1117;
+padding:15px;
+border-radius:10px;
+font-family:Consolas,monospace;
+font-size:13px;
+color:#00ffcc;
+margin-top:10px;
+position:relative;
+white-space:pre-wrap;
 }
 
-li {
-    margin-bottom: 10px;
-    font-size: 15px;
+.copy{
+position:absolute;
+top:8px;
+right:8px;
+background:#00f5ff;
+border:none;
+padding:3px 10px;
+border-radius:6px;
+cursor:pointer;
+font-size:12px;
+color:#000;
 }
 
-/* ===============================
-   CODE BOX
-================================= */
-
-.code-box {
-    background: #0d1117;
-    border-radius: 14px;
-    padding: 20px;
-    margin-top: 20px;
-    font-family: Consolas, monospace;
-    font-size: 14px;
-    color: #00ffcc;
-    box-shadow: 
-        inset 0 0 15px rgba(0,255,204,0.2),
-        0 0 20px rgba(0,0,0,0.6);
-    overflow-x: auto;
-    position: relative;
+.copy:hover{
+opacity:0.8;
 }
 
-.code-box::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, #00f5ff, #00ffcc);
+ul{
+padding-left:20px;
 }
 
-/* ===============================
-   FOOTER
-================================= */
-
-footer {
-    text-align: center;
-    margin-top: 80px;
-    font-size: 14px;
-    opacity: 0.8;
-    text-shadow: 0 0 10px rgba(0,255,255,0.5);
-}
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 28px;
-    }
-
-    .card {
-        padding: 25px;
-    }
+.subtitle{
+font-size:14px;
+opacity:0.8;
+margin-bottom:20px;
 }
 
 </style>
+
+<script>
+function copyCode(btn){
+let code=btn.parentElement.innerText.replace("Copy","").trim()
+navigator.clipboard.writeText(code)
+btn.innerText="Copied"
+setTimeout(()=>btn.innerText="Copy",1500)
+}
+</script>
+
 </head>
 
 <body>
@@ -162,57 +113,182 @@ footer {
 
 <h1>yt-dlp Advanced Download Interface</h1>
 
+<p class="subtitle">
+Structured command reference for downloading video and audio using yt-dlp.  
+Paste your own video URL where required.
+</p>
+
+<div class="section">
+
+<h2>Environment Setup</h2>
+
+<div class="setup-box">
+
+<h3>Install Python</h3>
+
+<ul>
+<li>Download the latest Python release from the official Python website.</li>
+<li>Enable the option <b>Add Python to PATH</b> during installation.</li>
+</ul>
+
+<h3>Install yt-dlp</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+pip install -U yt-dlp
+</div>
+
+<h3>Install FFmpeg</h3>
+
+<ul>
+<li>Download the FFmpeg static build.</li>
+<li>Add the <b>bin</b> directory to system PATH.</li>
+</ul>
+
+</div>
+
+<div class="setup-box">
+
+<h3>Windows 11 Setup Commands</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+pip install -U yt-dlp
+</div>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+winget install ffmpeg
+</div>
+
+</div>
+
+<div class="setup-box">
+
+<h3>Termux Android Setup</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+pkg update
+pkg upgrade
+pkg install python ffmpeg
+pip install -U yt-dlp
+</div>
+
+</div>
+
+</div>
+
+<h2>Download Commands</h2>
+
+<div class="grid">
+
 <div class="card">
-<h2>Full Quality Video + Metadata + Subtitles</h2>
+
+<h2>With Embedded Thumbnail</h2>
+
+<h3>Full Quality Video + Metadata + Subtitles</h3>
 
 <ul>
 <li>Best video and audio streams</li>
-<li>Embeds thumbnail, chapters, metadata</li>
+<li>Embeds thumbnail, chapters and metadata</li>
 <li>English and Hindi subtitles supported</li>
 <li>Automatic retry and resume</li>
 </ul>
 
-<div class="code-box">
-yt-dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-thumbnail --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" --ignore-errors --retries infinite --fragment-retries infinite --continue
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+py -m yt_dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-thumbnail --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" --ignore-errors --retries infinite --fragment-retries infinite --continue VIDEO_URL
 </div>
 
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+yt-dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-thumbnail --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" --ignore-errors --retries infinite --fragment-retries infinite --continue VIDEO_URL
 </div>
 
-<div class="card">
-<h2>Extract Highest Quality MP3 + Thumbnail + Metadata</h2>
+<h3>Extract Highest Quality MP3</h3>
 
 <ul>
-<li>Audio-only extraction</li>
+<li>Audio only extraction</li>
 <li>MP3 conversion</li>
 <li>Maximum VBR quality</li>
-<li>Embeds thumbnail as album art</li>
-<li>Adds metadata automatically</li>
+<li>Thumbnail embedded as album art</li>
+<li>Metadata added automatically</li>
 </ul>
 
-<div class="code-box">
-py -m yt_dlp -x --audio-format mp3 --audio-quality 0 --embed-thumbnail --add-metadata -o "%(title)s.%(ext)s" "https://youtu.be/RHcnVLbl2Z4?si=efzRL2tv8TSbhCma"
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+py -m yt_dlp -x --audio-format mp3 --audio-quality 0 --embed-thumbnail --add-metadata -o "%(title)s.%(ext)s" VIDEO_URL
 </div>
 
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-thumbnail --add-metadata -o "%(title)s.%(ext)s" VIDEO_URL
 </div>
 
-<div class="card">
-<h2>Download and Merge to MKV</h2>
+<h3>Download and Merge to MKV</h3>
 
 <ul>
-<li>Best video + audio streams</li>
+<li>Best video and audio streams</li>
 <li>Merged into MKV container</li>
 <li>Thumbnail converted and embedded</li>
 </ul>
 
-<div class="code-box">
-python -m yt_dlp -f "bv*+ba/b" --merge-output-format mkv --embed-thumbnail --convert-thumbnails jpg "https://youtu.be/KGEtIjERRq0?si=7O6iyW5HnrWXJsr9"
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+py -m yt_dlp -f "bv*+ba/b" --merge-output-format mkv --embed-thumbnail --convert-thumbnails jpg VIDEO_URL
+</div>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+yt-dlp -f "bv*+ba/b" --merge-output-format mkv --embed-thumbnail --convert-thumbnails jpg VIDEO_URL
 </div>
 
 </div>
 
-<footer>
-Enhanced Visual Layout with Glow, Depth, and Light Effects
-</footer>
+<div class="card">
+
+<h2>Without Embedded Thumbnail</h2>
+
+<h3>Full Quality Video + Metadata + Subtitles</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+py -m yt_dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" --ignore-errors --retries infinite --fragment-retries infinite --continue VIDEO_URL
+</div>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+yt-dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" --ignore-errors --retries infinite --fragment-retries infinite --continue VIDEO_URL
+</div>
+
+<h3>Extract Highest Quality MP3</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+py -m yt_dlp -x --audio-format mp3 --audio-quality 0 --add-metadata -o "%(title)s.%(ext)s" VIDEO_URL
+</div>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata -o "%(title)s.%(ext)s" VIDEO_URL
+</div>
+
+<h3>Download and Merge to MKV</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+py -m yt_dlp -f "bv*+ba/b" --merge-output-format mkv VIDEO_URL
+</div>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+yt-dlp -f "bv*+ba/b" --merge-output-format mkv VIDEO_URL
+</div>
+
+</div>
+
+</div>
 
 </div>
 
