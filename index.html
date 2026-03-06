@@ -94,6 +94,11 @@ opacity:0.8;
 margin-bottom:20px;
 }
 
+a{
+color:#00f5ff;
+text-decoration:none;
+}
+
 </style>
 
 <script>
@@ -114,7 +119,7 @@ setTimeout(()=>btn.innerText="Copy",1500)
 <h1>yt-dlp Advanced Download Interface</h1>
 
 <p class="subtitle">
-Structured command reference for downloading video and audio using yt-dlp.  
+Structured reference for downloading media using yt-dlp.  
 Paste your own video URL where required.
 </p>
 
@@ -126,10 +131,17 @@ Paste your own video URL where required.
 
 <h3>Install Python</h3>
 
+Download latest Python:
+
+<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>
+
 <ul>
-<li>Download the latest Python release from the official Python website.</li>
-<li>Enable the option <b>Add Python to PATH</b> during installation.</li>
+<li>Enable <b>Add Python to PATH</b> during installation</li>
 </ul>
+
+</div>
+
+<div class="setup-box">
 
 <h3>Install yt-dlp</h3>
 
@@ -138,27 +150,51 @@ Paste your own video URL where required.
 pip install -U yt-dlp
 </div>
 
+</div>
+
+<div class="setup-box">
+
 <h3>Install FFmpeg</h3>
 
-<ul>
-<li>Download the FFmpeg static build.</li>
-<li>Add the <b>bin</b> directory to system PATH.</li>
-</ul>
+Official static build:
+
+<a href="https://www.gyan.dev/ffmpeg/builds/">https://www.gyan.dev/ffmpeg/builds/</a>
+
+or using winget:
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">Copy</button>
+winget install ffmpeg
+</div>
 
 </div>
 
 <div class="setup-box">
 
-<h3>Windows 11 Setup Commands</h3>
+<h3>If Winget Command Is Not Detected</h3>
+
+Download App Installer from official GitHub release:
+
+<a href="https://github.com/microsoft/winget-cli/releases">https://github.com/microsoft/winget-cli/releases</a>
+
+Download this file:
+
+<ul>
+<li>Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle</li>
+</ul>
+
+Install using PowerShell:
 
 <div class="code">
 <button class="copy" onclick="copyCode(this)">Copy</button>
-pip install -U yt-dlp
+Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 </div>
 
+Verify installation:
+
 <div class="code">
 <button class="copy" onclick="copyCode(this)">Copy</button>
-winget install ffmpeg
+winget --version
 </div>
 
 </div>
@@ -192,7 +228,7 @@ pip install -U yt-dlp
 <ul>
 <li>Best video and audio streams</li>
 <li>Embeds thumbnail, chapters and metadata</li>
-<li>English and Hindi subtitles supported</li>
+<li>English and Hindi subtitles</li>
 <li>Automatic retry and resume</li>
 </ul>
 
@@ -208,14 +244,6 @@ yt-dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-thumbnail --
 
 <h3>Extract Highest Quality MP3</h3>
 
-<ul>
-<li>Audio only extraction</li>
-<li>MP3 conversion</li>
-<li>Maximum VBR quality</li>
-<li>Thumbnail embedded as album art</li>
-<li>Metadata added automatically</li>
-</ul>
-
 <div class="code">
 <button class="copy" onclick="copyCode(this)">Copy</button>
 py -m yt_dlp -x --audio-format mp3 --audio-quality 0 --embed-thumbnail --add-metadata -o "%(title)s.%(ext)s" VIDEO_URL
@@ -227,12 +255,6 @@ yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-thumbnail --add-metadata 
 </div>
 
 <h3>Download and Merge to MKV</h3>
-
-<ul>
-<li>Best video and audio streams</li>
-<li>Merged into MKV container</li>
-<li>Thumbnail converted and embedded</li>
-</ul>
 
 <div class="code">
 <button class="copy" onclick="copyCode(this)">Copy</button>
@@ -250,28 +272,28 @@ yt-dlp -f "bv*+ba/b" --merge-output-format mkv --embed-thumbnail --convert-thumb
 
 <h2>Without Embedded Thumbnail</h2>
 
-<h3>Full Quality Video + Metadata + Subtitles</h3>
+<h3>Full Quality Video</h3>
 
 <div class="code">
 <button class="copy" onclick="copyCode(this)">Copy</button>
-py -m yt_dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" --ignore-errors --retries infinite --fragment-retries infinite --continue VIDEO_URL
+py -m yt_dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" VIDEO_URL
 </div>
 
 <div class="code">
 <button class="copy" onclick="copyCode(this)">Copy</button>
-yt-dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" --ignore-errors --retries infinite --fragment-retries infinite --continue VIDEO_URL
+yt-dlp -f "bestvideo+bestaudio/best" -o "%(title)s.%(ext)s" --embed-metadata --embed-chapters --embed-info-json --write-auto-subs --embed-subs --sub-langs "en.*,hi.*" VIDEO_URL
 </div>
 
 <h3>Extract Highest Quality MP3</h3>
 
 <div class="code">
 <button class="copy" onclick="copyCode(this)">Copy</button>
-py -m yt_dlp -x --audio-format mp3 --audio-quality 0 --add-metadata -o "%(title)s.%(ext)s" VIDEO_URL
+py -m yt_dlp -x --audio-format mp3 --audio-quality 0 --add-metadata VIDEO_URL
 </div>
 
 <div class="code">
 <button class="copy" onclick="copyCode(this)">Copy</button>
-yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata -o "%(title)s.%(ext)s" VIDEO_URL
+yt-dlp -x --audio-format mp3 --audio-quality 0 --add-metadata VIDEO_URL
 </div>
 
 <h3>Download and Merge to MKV</h3>
